@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Estates Table</title>
+  </head>
+  <body>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Images</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in rows %}
+        <tr>
+          <td>{{ row[1] }}</td>
+          <td>
+          {% for link in row[2] %}
+            <a href="{{ link }}" target="_blank">{{ link }}</a><br/>
+          {% endfor %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>

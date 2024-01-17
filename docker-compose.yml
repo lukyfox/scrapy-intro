@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  scrapy:
+    build: ./scrapy
+    depends_on:
+      - postgresql
+    environment:
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=mydb
+    volumes:
+      - ./scrapy:/app
+    command: scrapy crawl sreality
+
+  postgresql:
+    build: ./postgresql
+    ports:
+      - "5432:5432"
+
+  flask:
+    build: ./flask
+    ports:
+      - "8080:5000"
+    depends_on:
+      - postgresql
